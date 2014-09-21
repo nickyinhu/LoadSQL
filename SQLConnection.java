@@ -4,7 +4,8 @@ import java.sql.*;
 import java.util.*;
 
 public class SQLConnection {
-	
+	//Establish a connection based on server and user information passed
+	//@para: dbName: dabase name, userName: username, password: password
 	public static Connection getConnection(String dbName, String userName, String password)  {
 		Connection conn = null;
 		Properties connectionProps = new Properties();
@@ -16,7 +17,7 @@ public class SQLConnection {
 				connectionProps);
 		} catch (SQLException ex){
 			PrintSQLEX.printSQLException(ex);
-		} 		
+		} 
 		return conn;
 	}
 }
