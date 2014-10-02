@@ -4,8 +4,13 @@ import java.io.*;
 import java.sql.*;
 
 public class Main {
-	public static void main(String[] args)  {
-	    String dbName = "MyGene";
+	public static void main(String[] args){
+		setUp();
+	}
+	
+	
+	public static void setUp(){
+		String dbName = "MyGene";
 	    String tableName = "table1";
 	    File file = new File("result.txt");
 	    
@@ -19,21 +24,30 @@ public class Main {
 	            + "Fusarium varchar(20) NOT NULL,"
 	            + "Alias varchar(20))";
 	    String deleteString = "Drop table table1";
+
 	    
-		if (args.length < 2) {
-			System.out.println("Enter username/password");
-		}
+
 		FileReader fr = null;
 		try {	
 			//
-
+		    System.out.println("Please enter your user name");
+		    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		    String user = br.readLine().trim();
+		    if(user.length() == 0){
+		    	System.out.println("Please enter a valid user name, System exited");
+		    	System.exit(0); 
+		    }
+		    System.out.println("Please enter your user password");
+		    BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
+		    
+		    String pswd = br2.readLine().trim();
 			fr = new FileReader(file);
 			BufferedReader reader = new BufferedReader(fr); 
 			System.out.println("-----Data File Opened-----");
 			
-			Connection conn = SQLConnection.getConnection(dbName, args[0], args[1]);
+			Connection conn = SQLConnection.getConnection(dbName, user, pswd);
 			System.out.println("Database connected");
-//			DeleteTable.deleteTable(deleteString, conn);
+			DeleteTable.deleteTable(deleteString, conn);
 			CreateTable.createTable(tableName, createString, conn);
 			String line = null;
 			System.out.println("Data updating------------------------ Please wait");
