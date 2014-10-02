@@ -4,16 +4,22 @@ import java.io.*;
 import java.sql.*;
 
 public class Main {
+	private String dbName;
+	private String tableName;
+	private File file;
 	public static void main(String[] args){
-		setUp();
-	}
-	
-	
-	public static void setUp(){
 		String dbName = "MyGene";
 	    String tableName = "table1";
 	    File file = new File("result.txt");
-	    
+	    Main go = new Main();
+		go.setUp(dbName, tableName, file);
+	}
+	
+	
+	public void setUp(String dbName, String tableName, File file){
+		this.dbName = dbName;
+	    this.tableName = tableName;
+	    this.file = file;
 		String createString =
 	            "create table IF NOT EXISTS " +
 	            		tableName +
