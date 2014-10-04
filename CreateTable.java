@@ -3,7 +3,8 @@ package SQL;
 import java.sql.*;
 
 public class CreateTable {
-	public static void createTable(String tableName, String createString, Connection conn) throws SQLException {
+	public static void createTable(String tableName, String createString, Connection conn) 
+		throws SQLException {
 		Statement stmt = null;
 		try {		
 			DatabaseMetaData md = conn.getMetaData();

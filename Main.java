@@ -7,6 +7,7 @@ public class Main {
 	private String dbName;
 	private String tableName;
 	private File file;
+
 	public static void main(String[] args){
 		String dbName = "MyGene";
 	    String tableName = "table1";
@@ -20,6 +21,7 @@ public class Main {
 		this.dbName = dbName;
 	    this.tableName = tableName;
 	    this.file = file;
+	    
 		String createString =
 	            "create table IF NOT EXISTS " +
 	            		tableName +
@@ -31,9 +33,7 @@ public class Main {
 	            + "Alias varchar(20))";
 	    String deleteString = "Drop table table1";
 
-	    
-
-		FileReader fr = null;
+	    FileReader fr = null;
 		try {	
 			//
 		    System.out.println("Please enter your user name");
